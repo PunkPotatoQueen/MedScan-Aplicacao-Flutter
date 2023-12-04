@@ -3,7 +3,7 @@ import 'dart:io';
 import 'package:camera/camera.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_tesseract_ocr/flutter_tesseract_ocr.dart';
-import 'package:opencv_4/opencv_4.dart';
+// import 'package:opencv_4/opencv_4.dart';
 
 // ignore: must_be_immutable
 class ImagePreview extends StatefulWidget {
@@ -25,15 +25,15 @@ class _MyWidgetState extends State<ImagePreview> {
 
   Future<void> tesseractExtract(XFile file) async {
     try {
-      XFile imagem = await Cv2.threshold(
-      pathString: widget.file.path,
-      thresholdValue: 100,
-      maxThresholdValue: 200,
-      thresholdType: Cv2.THRESH_BINARY,
-      );
+      // XFile imagem = await Cv2.threshold(
+      // pathString: widget.file.path,
+      // thresholdValue: 100,
+      // maxThresholdValue: 200,
+      // thresholdType: Cv2.THRESH_BINARY,
+      // );
 
       String text = await FlutterTesseractOcr.extractText(
-          imagem.path, language: 'por',
+          widget.file.path, language: 'por',
           args: {
             "psm": "11",
             "preserve_interword_spaces": "1",
