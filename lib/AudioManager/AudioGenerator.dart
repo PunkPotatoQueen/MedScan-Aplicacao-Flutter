@@ -2,6 +2,7 @@ import 'dart:io';
 import 'AudioStorage.dart';
 import 'dart:convert';
 import 'dart:typed_data';
+import '../apiKey.dart';
 //import 'package:audioplayers/audioplayers.dart';
 
 class AudioGenerator {
@@ -24,7 +25,7 @@ class AudioGenerator {
       }
     };
 
-    var url = Uri.parse('https://texttospeech.googleapis.com/v1beta1/text:synthesize?key=AIzaSyCLPu6hlfssJaDVR8hJCGz4FIz3FSru-lU');
+    var url = Uri.parse('https://texttospeech.googleapis.com/v1beta1/text:synthesize?key=${key}');
     HttpClient client = HttpClient();
     HttpClientRequest request = await client.postUrl(url);
     request.write(json.encode(payload));
