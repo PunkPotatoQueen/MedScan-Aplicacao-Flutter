@@ -39,6 +39,10 @@ dependencies:
   camera: ^0.10.3
   flutter_tesseract_ocr: ^0.4.24
   # opencv_4: ^1.0.0
+  http: ^1.1.2
+  audioplayers: ^5.2.1
+  path_provider:
+  permission_handler:
 
 
 

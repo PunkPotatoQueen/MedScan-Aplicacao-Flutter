@@ -4,6 +4,7 @@ import 'package:camera/camera.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_tesseract_ocr/flutter_tesseract_ocr.dart';
 // import 'package:opencv_4/opencv_4.dart';
+import '../AudioManager/AudioGenerator.dart';
 
 // ignore: must_be_immutable
 class ImagePreview extends StatefulWidget {
@@ -39,6 +40,7 @@ class _MyWidgetState extends State<ImagePreview> {
       setState(() {
         extractText = text;
       });
+      AudioGenerator.generate(extractText);
     } catch (e) {
       debugPrintStack();
     }
@@ -57,6 +59,7 @@ class _MyWidgetState extends State<ImagePreview> {
           ),
           bottomSheet: Text(extractText),
         ),
+
       ],
     );
   }
