@@ -15,7 +15,7 @@ class ImagePreview extends StatefulWidget {
 }
 
 class _MyWidgetState extends State<ImagePreview> {
-  String ExtractText = '';    // inicializando 
+  String extractText = ''; // inicializando
 
   @override
   void initState() {
@@ -25,41 +25,46 @@ class _MyWidgetState extends State<ImagePreview> {
 
   Future<void> tesseractExtract(XFile file) async {
     try {
-      // XFile imagem = await Cv2.threshold(
-      // pathString: widget.file.path,
-      // thresholdValue: 100,
-      // maxThresholdValue: 200,
-      // thresholdType: Cv2.THRESH_BINARY,
-      // );
 
-      String text = await FlutterTesseractOcr.extractText(
-          widget.file.path, language: 'por',
+      String text = await FlutterTesseractOcr.extractText(widget.file.path,
+          language: 'por',
           args: {
             "psm": "11",
             "preserve_interword_spaces": "1",
           });
 
-      if(text == ''){
-          text = 'Não encontramos texto nessa imagem';
+      if (text == '') {
+        text = 'Não encontramos texto nessa imagem';
       }
       setState(() {
-        ExtractText = text;
+        extractText = text;
       });
     } catch (e) {
-      print('Erro: não conseguimos encontrar nenhum texto');
+      debugPrintStack();
     }
   }
 
   @override
   Widget build(BuildContext context) {
     File picture = File(widget.file.path);
-    print(ExtractText);
-    return Scaffold(
-        appBar: AppBar(title: Text('MedScan')),
-        body: Center(
-          child: Image.file(picture),
-        )
+
+    return Stack(
+      children: [
+        Scaffold(
+          appBar: AppBar(title: const Text('MedScan')),
+          body: Center(
+            child: Image.file(picture),
+          ),
+          bottomSheet: Text(extractText),
+        ),
+      ],
     );
   }
 }
 
+// XFile imagem = await Cv2.threshold(
+      // pathString: widget.file.path,
+      // thresholdValue: 100,
+      // maxThresholdValue: 200,
+      // thresholdType: Cv2.THRESH_BINARY,
+      // );
