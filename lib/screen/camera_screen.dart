@@ -3,39 +3,50 @@ import 'dart:io';
 import 'package:camera/camera.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_tesseract_ocr/flutter_tesseract_ocr.dart';
+import 'package:google_mlkit_text_recognition/google_mlkit_text_recognition.dart';
 // import 'package:opencv_4/opencv_4.dart';
 
 // ignore: must_be_immutable
 class ImagePreview extends StatefulWidget {
-  ImagePreview(this.file, {super.key});
-  XFile file;
+  ImagePreview(this.imagemAtual, {super.key});
+  XFile imagemAtual;
 
   @override
   State<ImagePreview> createState() => _MyWidgetState();
 }
 
 class _MyWidgetState extends State<ImagePreview> {
-  String extractText = ''; // inicializando
+  String extractText = '';// inicializando
 
   @override
   void initState() {
     super.initState();
-    tesseractExtract(widget.file);
+    extractor();
   }
 
-  Future<void> tesseractExtract(XFile file) async {
+  Future<void> extractor() async {
     try {
+      final inputImage = InputImage.fromFilePath(widget.imagemAtual.path);
+      
+      final textRecognizer = TextRecognizer(script: TextRecognitionScript.latin);
 
-      String text = await FlutterTesseractOcr.extractText(widget.file.path,
-          language: 'por',
-          args: {
-            "psm": "11",
-            "preserve_interword_spaces": "1",
-          });
+      final RecognizedText recognizedText = await textRecognizer.processImage(inputImage);
 
-      if (text == '') {
-        text = 'Não encontramos texto nessa imagem';
+      String text = recognizedText.text;
+      for (TextBlock block in recognizedText.blocks) {
+        final Rect rect = block.boundingBox;
+        final List<Point<int>> cornerPoints = block.cornerPoints;
+        final String text = block.text;
+        final List<String> languages = block.recognizedLanguages;
+        
+        for (TextLine line in block.lines) {
+          // Same getters as TextBlock
+          for (TextElement element in line.elements) {
+            // Same getters as TextBlock
+          }
+        }
       }
+      
       setState(() {
         extractText = text;
       });
@@ -46,12 +57,12 @@ class _MyWidgetState extends State<ImagePreview> {
 
   @override
   Widget build(BuildContext context) {
-    File picture = File(widget.file.path);
-
+    File picture = File(widget.imagemAtual.path);
+    print(extractText);
     return Stack(
       children: [
         Scaffold(
-          appBar: AppBar(title: const Text('MedScan')),
+          appBar: AppBar(title: Text('MedScan')),
           body: Center(
             child: Image.file(picture),
           ),
@@ -62,9 +73,15 @@ class _MyWidgetState extends State<ImagePreview> {
   }
 }
 
-// XFile imagem = await Cv2.threshold(
-      // pathString: widget.file.path,
-      // thresholdValue: 100,
-      // maxThresholdValue: 200,
-      // thresholdType: Cv2.THRESH_BINARY,
-      // );
+
+
+// String text = await FlutterTesseractOcr.extractText(file,
+//           language: 'por',
+//           args: {
+//             "psm": "11",
+//             "preserve_interword_spaces": "1",
+//           });
+
+//       if (text == '') {
+//         text = 'Não encontramos texto nessa imagem';
+//       }
