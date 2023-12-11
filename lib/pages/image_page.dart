@@ -20,7 +20,7 @@ class ImagePageState extends State<ImagePage> {
 
   _getOcrText() async {
     final ocrService = OCRService();
-    Medicamento medicamento = await ocrService.tesseractExtract(widget.file);
+    Medicamento medicamento = await ocrService.extractText(widget.file.path);
 
     setState(() {
       _medicamento = medicamento;
