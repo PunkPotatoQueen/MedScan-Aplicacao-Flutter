@@ -20,7 +20,7 @@ class ImagePageState extends State<ImagePage> {
   _getOcrText() async {
     final ocrService = OCRService();
     Medicamento medicamento = await ocrService.extractText(widget.file.path);
-    medicamento.audio = AudioGenerator(medicamento.text);
+    medicamento.audio = AudioGenerator.generate(medicamento.text);
     
     setState(() {
       _medicamento = medicamento;
