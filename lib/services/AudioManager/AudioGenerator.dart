@@ -2,7 +2,7 @@ import 'dart:io';
 import 'AudioStorage.dart';
 import 'dart:convert';
 import 'dart:typed_data';
-import '../apiKey.dart';
+import '../../apiKey.dart';
 //import 'package:audioplayers/audioplayers.dart';
 
 class AudioGenerator {
