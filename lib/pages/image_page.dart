@@ -2,13 +2,15 @@ import 'dart:io';
 
 import 'package:camera/camera.dart';
 import 'package:flutter/material.dart';
+
 import 'package:projeto3/models/medicamento_model.dart';
-import '../services/ocr_service.dart';
-import '../services/AudioManager/AudioGenerator.dart';
+import 'package:projeto3/services/ocr_service.dart';
+import 'package:projeto3/services/AudioManager/AudioGenerator.dart';
 
 class ImagePage extends StatefulWidget {
   ImagePage(this.file, {super.key});
-  XFile file;
+
+  final XFile file;
 
   @override
   State<ImagePage> createState() => ImagePageState();

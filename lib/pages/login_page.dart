@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:projeto3/pages/register_page.dart';
 
-import 'menu_page.dart';
+import 'package:projeto3/pages/menu_page.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({super.key});
@@ -25,49 +25,57 @@ class _LoginPageState extends State<LoginPage> {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
+              const Text(
+                'Login',
+                style: TextStyle(
+                  fontWeight: FontWeight.bold,
+                  fontSize: 30,
+                ),
+              ),
+              const SizedBox(height: 20,),
               TextField(
                 onChanged: (text) {
                   email = text;
                 },
                 keyboardType: TextInputType.emailAddress,
-                decoration: InputDecoration(
+                decoration: const InputDecoration(
                   labelText: 'Email',
                   border: OutlineInputBorder(),
                 ),
               ),
-              SizedBox(height: 15),
+              const SizedBox(height: 15),
               TextField(
                 onChanged: (text) {
                   password = text;
                 },
                 obscureText: true,
-                decoration: InputDecoration(
+                decoration: const InputDecoration(
                   labelText: 'Senha',
                   border: OutlineInputBorder(),
                 ),
               ),
-              SizedBox(height: 20),
+              const SizedBox(height: 20),
               ElevatedButton(
                 onPressed: () {
                   if (email == 'admin@gmail.com' && password == 'admin') {
                     Navigator.of(context).pushReplacement(
-                      MaterialPageRoute(builder: (context) => MenuPage()),
+                      MaterialPageRoute(builder: (context) => const MenuPage()),
                     );
                   } else {
                     print('Senha Incorreta');
                   }
                 },
-                  child: Text('Entrar')
+                  child: const Text('Entrar')
               ),
-              SizedBox(height: 40),
-              Text('Não possui conta?'),
+              const SizedBox(height: 40),
+              const Text('Não possui conta?'),
               TextButton(
                   onPressed: () {
                     Navigator.of(context).push(
-                      MaterialPageRoute(builder: (context) => RegisterPage()),
+                      MaterialPageRoute(builder: (context) => const RegisterPage()),
                     );
                   },
-                  child: Text('Criar Cadastro'))
+                  child: const Text('Criar Cadastro'))
             ],
           ),
         ),
