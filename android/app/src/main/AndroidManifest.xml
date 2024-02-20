@@ -1,8 +1,17 @@
-<manifest xmlns:android="http://schemas.android.com/apk/res/android">
+<manifest xmlns:android="http://schemas.android.com/apk/res/android" package="com.example.MedScan-Aplicacao-Flutter">
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.RECORD_AUDIO"/>
+    <uses-permission android:name="android.permission.ACCESS_MEDIA_LOCATION"/>
+    <uses-permission android:name="android.permission.MANAGE_DEVICE_POLICY_AUDIO_OUTPUT"/>
+    <uses-permission android:name="android.permission.MANAGE_DEVICE_POLICY_MICROPHONE"/>
+    <uses-permission android:name="android.permission.READ_MEDIA_AUDIO"/>
     <application
-        android:label="projeto3"
+        android:label="MedScan"
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher">
+        android:usesCleartextTraffic="true">
         <activity
             android:name=".MainActivity"
             android:exported="true"

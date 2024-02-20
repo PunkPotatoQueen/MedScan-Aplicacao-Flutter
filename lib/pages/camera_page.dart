@@ -1,6 +1,8 @@
 import 'package:camera/camera.dart';
 import 'package:flutter/material.dart';
-import 'image_page.dart';
+
+import 'package:projeto3/pages/login_page.dart';
+import 'package:projeto3/pages/image_page.dart';
 
 
 class CameraPage extends StatefulWidget {
@@ -63,6 +65,17 @@ class CameraPageState extends State<CameraPage> {
         ),
         centerTitle: true,
         backgroundColor: Colors.greenAccent,
+        actions: [
+          IconButton(
+            icon: const Icon(Icons.menu),
+            tooltip: 'Show Snackbar',
+            onPressed: () {
+              Navigator.of(context).push(
+                MaterialPageRoute(builder: (context) => LoginPage()),
+              );
+            },
+          ),
+        ],
       ),
       body: Stack(
         children: [
