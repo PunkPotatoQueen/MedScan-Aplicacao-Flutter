@@ -2,15 +2,14 @@ import 'dart:io';
 
 import 'package:camera/camera.dart';
 import 'package:flutter/material.dart';
-
 import 'package:projeto3/models/medicamento_model.dart';
-import 'package:projeto3/services/ocr_service.dart';
-import 'package:projeto3/services/AudioManager/AudioGenerator.dart';
+import '../services/ocr_service.dart';
+
+
 
 class ImagePage extends StatefulWidget {
   ImagePage(this.file, {super.key});
-
-  final XFile file;
+  XFile file;
 
   @override
   State<ImagePage> createState() => ImagePageState();
@@ -21,9 +20,8 @@ class ImagePageState extends State<ImagePage> {
 
   _getOcrText() async {
     final ocrService = OCRService();
-    Medicamento medicamento = await ocrService.extractText(widget.file.path);
-    medicamento.audio = AudioGenerator.generate(medicamento.text);
-    
+    Medicamento medicamento = await ocrService.tesseractExtract(widget.file);
+
     setState(() {
       _medicamento = medicamento;
     });
@@ -40,8 +38,7 @@ class ImagePageState extends State<ImagePage> {
     File picture = File(widget.file.path);
 
     return Scaffold(
-      appBar: AppBar(
-        title: const Text(
+      appBar: AppBar(title: const Text(
           'MedScan',
           style: TextStyle(
             fontWeight: FontWeight.bold,
@@ -52,11 +49,12 @@ class ImagePageState extends State<ImagePage> {
         backgroundColor: Colors.greenAccent,
       ),
       body: Center(
-          child: Column(
-        children: [
-          Image.file(picture),
-        ],
-      )),
+        child: Column(
+          children: [
+            Image.file(picture),
+          ],
+        ) 
+      ),
       bottomSheet: SizedBox(
         width: MediaQuery.of(context).size.width,
         height: 100,

@@ -1,6 +1,5 @@
 class Medicamento {
   String text;
-  Future<void> ?audio;
 
   Medicamento(this.text);
 
