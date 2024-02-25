@@ -1,5 +1,6 @@
 import 'package:alarm/alarm.dart';
 import 'package:flutter/material.dart';
+import 'package:projeto3/widgets/date_time_picker.dart';
 
 class ExampleAlarmEditScreen extends StatefulWidget {
   final AlarmSettings? alarmSettings;
@@ -63,8 +64,7 @@ class _ExampleAlarmEditScreenState extends State<ExampleAlarmEditScreen> {
   }
 
   Future<void> pickTime() async {
-    final res = await showTimePicker(
-      initialTime: TimeOfDay.fromDateTime(selectedDateTime),
+    final res = await showDateTimePicker(
       context: context,
     );
 

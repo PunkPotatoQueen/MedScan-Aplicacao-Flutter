@@ -6,7 +6,6 @@ import 'package:permission_handler/permission_handler.dart';
 
 import 'package:projeto3/pages/edit_alarm_page.dart';
 import 'package:projeto3/pages/ring_page.dart';
-import 'package:projeto3/pages/shortcut_button.dart';
 import 'package:projeto3/widgets/tile.dart';
 import 'package:projeto3/pages/menu_page.dart';
 
@@ -192,18 +191,12 @@ class _ManagerAlarmPageState extends State<ManagerAlarmPage> {
         ),
       floatingActionButton: Padding(
         padding: const EdgeInsets.all(10),
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            ExampleAlarmHomeShortcutButton(refreshAlarms: loadAlarms),
-            FloatingActionButton(
-              onPressed: () => navigateToAlarmScreen(null),
-              child: const Icon(Icons.alarm_add_rounded, size: 33),
-            ),
-          ],
-        ),
+        child: FloatingActionButton(
+          onPressed: () => navigateToAlarmScreen(null),
+          child: const Icon(Icons.alarm_add_rounded, size: 33),
+        )
       ),
-      floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
+      floatingActionButtonLocation: FloatingActionButtonLocation.miniEndDocked,
     );
   }
 }
