@@ -115,14 +115,14 @@ class _ManagerAlarmPageState extends State<ManagerAlarmPage> {
           children: [
             const UserAccountsDrawerHeader(
               accountName: Text(
-                'Usuário',
+                'Carlos Silva',
                 style: TextStyle(
                   fontWeight: FontWeight.bold,
                   color: Colors.black,
                 ),
               ),
               accountEmail: Text(
-                'user@gmail.com',
+                'carlos.silva@gmail.com',
                 style: TextStyle(
                   fontWeight: FontWeight.bold,
                   color: Colors.black,

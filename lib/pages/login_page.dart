@@ -57,7 +57,7 @@ class _LoginPageState extends State<LoginPage> {
               const SizedBox(height: 20),
               ElevatedButton(
                 onPressed: () {
-                  if (email == 'admin@gmail.com' && password == 'admin') {
+                  if (email == 'carlos.silva@gmail.com' && password == 'senha123') {
                     Navigator.of(context).pushReplacement(
                       MaterialPageRoute(builder: (context) => const MenuPage()),
                     );

@@ -32,14 +32,14 @@ class MenuPageState extends State<MenuPage> {
           children: [
             const UserAccountsDrawerHeader(
               accountName: Text(
-                'Usuário',
+                'Carlos Silva',
                 style: TextStyle(
                   fontWeight: FontWeight.bold,
                   color: Colors.black,
                 ),
               ),
               accountEmail: Text(
-                'user@gmail.com',
+                'carlos.silva@gmail.com',
                 style: TextStyle(
                   fontWeight: FontWeight.bold,
                   color: Colors.black,
@@ -79,10 +79,15 @@ class MenuPageState extends State<MenuPage> {
           ],
         ),
       ),
-      body: const Center(
+      body: Center(
         child: Column(
           children: [
-            Text("Menu"),
+            Center(
+              child: Text(
+                "Nenhum medicamento tomado",
+                style: Theme.of(context).textTheme.titleMedium,
+              ),
+            ),
           ],
         ),
       ),

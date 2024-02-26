@@ -105,6 +105,7 @@ class CameraPageState extends State<CameraPage> {
                       }
 
                       try {
+                        _controller.setFlashMode(FlashMode.off);
                         await _controller.takePicture();
                         XFile file = await _controller.takePicture();
 

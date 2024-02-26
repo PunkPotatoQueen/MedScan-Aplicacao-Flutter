@@ -1,5 +1,7 @@
 import 'package:alarm/alarm.dart';
+import 'package:camera/camera.dart';
 import 'package:flutter/material.dart';
+import 'package:projeto3/pages/camera_page.dart';
 
 class ExampleAlarmRingScreen extends StatelessWidget {
   final AlarmSettings alarmSettings;
@@ -25,9 +27,11 @@ class ExampleAlarmRingScreen extends StatelessWidget {
               const Text("🔔", style: TextStyle(fontSize: 50)),
               RawMaterialButton(
                 fillColor: Colors.greenAccent,
-                onPressed: () {
-                  Alarm.stop(alarmSettings.id)
-                      .then((_) => Navigator.pop(context));
+                onPressed: () async {
+                  Alarm.stop(alarmSettings.id);
+
+                  await availableCameras().then((value) => Navigator.push(context,
+                      MaterialPageRoute(builder: (_) => CameraPage(cameras: value))));
                 },
                 child: const Text(
                   "Tomar Medicamento",
